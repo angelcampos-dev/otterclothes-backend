@@ -1,6 +1,5 @@
 package com.otterclothes.api.controllers;
 
-
 import com.otterclothes.api.models.Stock;
 import com.otterclothes.api.repository.StockRepository;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +25,7 @@ public class StockController {
     // crud creat para guardar un producto en inventario
     @PostMapping
     public Stock createStock(@RequestBody Stock stock) {
+        stock.setStockId(null);
         return stockRepository.save(stock);
     }
 }

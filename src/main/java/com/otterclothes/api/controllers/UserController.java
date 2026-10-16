@@ -26,6 +26,7 @@ public class UserController {
     // crud cretae para guardar un nuevo usuario
     @PostMapping
     public User createUser(@RequestBody User user) {
+        user.setUserId(null);
         return userRepository.save(user);
     }
 }

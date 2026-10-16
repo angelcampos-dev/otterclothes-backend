@@ -1,6 +1,5 @@
 package com.otterclothes.api.controllers;
 
-
 import com.otterclothes.api.models.Order;
 import com.otterclothes.api.repository.OrderRepository;
 import lombok.AllArgsConstructor;
@@ -25,6 +24,7 @@ public class OrderController {
 
     @PostMapping
     public Order createOrder(@RequestBody Order order) {
+        order.setOrderId(null);
         return orderRepository.save(order);
     }
 }

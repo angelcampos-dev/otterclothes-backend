@@ -23,6 +23,7 @@ public class OrderItemController {
 
     @PostMapping
     public OrderItem createOrderItem(@RequestBody OrderItem orderItem) {
+        orderItem.setOrderItemsId(null);
         return orderItemRepository.save(orderItem);
     }
 }

@@ -1,6 +1,6 @@
 package com.otterclothes.api.models;
 
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,29 +15,23 @@ import lombok.Setter;
 @Table(name = "order_items")
 public class OrderItem {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("order_items_id")
     @Column(name = "order_items_id")
     private Integer orderItemsId;
 
-    // esto esta unido a la columna order_id de la tabla
-    @Column(name = "order_id", nullable = false)
-    private Integer orderId;
+    @JsonProperty("order")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "order_id", nullable = false)
+    private Order order;
 
-    @Column(name = "order_payment", nullable = false, length = 45)
-    private String orderPayment;
+    @JsonProperty("stock")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "stock_stock_id", nullable = false)
+    private Stock stock;
 
-    // constructor vacio de prueva
-    //public OrderItem() {}
-
-    // getter y setter
-    public Integer getOrderItemsId() { return orderItemsId; }
-    public void setOrderItemsId(Integer orderItemsId) { this.orderItemsId = orderItemsId; }
-
-    public Integer getOrderId() { return orderId; }
-    public void setOrderId(Integer orderId) { this.orderId = orderId; }
-
-    public String getOrderPayment() { return orderPayment; }
-    public void setOrderPayment(String orderPayment) { this.orderPayment = orderPayment; }
+    @JsonProperty("quant_item")
+    @Column(name = "quant_item", nullable = false)
+    private Integer quantItem;
 }
