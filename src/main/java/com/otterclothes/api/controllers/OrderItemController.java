@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/order-items")
+@CrossOrigin(origins = "*")
 public class OrderItemController {
 
     private final OrderItemRepository orderItemRepository;
