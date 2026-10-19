@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/contact-forms")
+@CrossOrigin(origins = "*")
 public class ContactFormController {
 
     private final ContactFormRepository contactFormRepository;
