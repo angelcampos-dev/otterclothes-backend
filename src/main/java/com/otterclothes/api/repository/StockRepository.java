@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StockRepository extends JpaRepository<Stock, Integer> {
+    boolean existsByProduct_ProductId(Integer productId);
+
     // con JpaRepository, spring boot nos da
     // todos los métodos crud básicos
 }

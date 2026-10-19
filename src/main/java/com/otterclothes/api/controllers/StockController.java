@@ -2,6 +2,7 @@ package com.otterclothes.api.controllers;
 
 import com.otterclothes.api.models.Stock;
 import com.otterclothes.api.repository.StockRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,5 +28,23 @@ public class StockController {
     public Stock createStock(@RequestBody Stock stock) {
         stock.setStockId(null);
         return stockRepository.save(stock);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Stock> updateStock(@PathVariable Integer id, @RequestBody Stock stock) {
+        if (!stockRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        stock.setStockId(id);
+        return ResponseEntity.ok(stockRepository.save(stock));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteStock(@PathVariable Integer id) {
+        if (!stockRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        stockRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
