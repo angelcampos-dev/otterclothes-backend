@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/stock")
+@CrossOrigin(origins = "*")
 public class StockController {
 
     private final StockRepository stockRepository;

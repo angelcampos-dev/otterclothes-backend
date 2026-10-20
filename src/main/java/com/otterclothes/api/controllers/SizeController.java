@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/sizes")
+@CrossOrigin(origins = "*")
 public class SizeController {
 
     private final SizeRepository sizeRepository;

@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/addresses")
+@CrossOrigin(origins = "*")
 public class AddressController {
 
     private final AddressRepository addressRepository;
@@ -20,6 +21,14 @@ public class AddressController {
     @GetMapping
     public List<Address> getAllAddresses() {
         return addressRepository.findAll();
+    }
+
+    @GetMapping("/user/{userId}/default")
+    public ResponseEntity<Address> getDefaultAddress(@PathVariable Integer userId) {
+        return addressRepository.findFirstByUser_UserIdAndDefaultAddressTrue(userId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+
     }
 
     @PostMapping

@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/favs")
+@CrossOrigin(origins = "*")
 public class FavController {
 
     private final FavRepository favRepository;

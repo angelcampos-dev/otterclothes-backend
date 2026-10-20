@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/colors")
+@CrossOrigin(origins = "*")
 public class ColorController {
 
     private final ColorRepository colorRepository;
